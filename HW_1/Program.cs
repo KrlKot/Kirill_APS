@@ -13,11 +13,9 @@ while (true)
         for (int j = 0; j <= s2.Length; j++) 
         {
             if (i == 0 || j == 0) LD[i, j] = i + j;
-            else if (i > j) LD[i, j] = LD[i - 1, j] + 1;
-            else if (j < i) LD[i, j] = LD[i, j - 1] + 1;
-            else if (i > 2 && j > 2 && s1[i - 1] == s2[j - 2] && s1[i - 2] == s2[j - 1]) LD[i, j] = LD[i - 2, j - 2] + 1;
-            else if (s1[i - 1] != s2[j - 1]) LD[i, j] = LD[i - 1, j - 1] + 1;
-            else LD[i, j] = LD[i - 1, j - 1];
+            else if (s1[i - 1] == s2[j - 1]) LD[i, j] = LD[i - 1, j - 1];
+            else if (i >= 2 && j >= 2 && s1[i - 1] == s2[j - 2] && s1[i - 2] == s2[j - 1]) LD[i, j] = LD[i - 2, j - 2] + 1;
+            else LD[i, j] = Math.Min(LD[i - 1, j - 1] + 1, Math.Min(LD[i - 1,j] + 1, LD[i, j - 1] + 1));
         }
     }
     Console.WriteLine($"Расстояние Левенштейна равно {LD[s1.Length, s2.Length]}\n");
