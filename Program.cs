@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 
 while (true)
 {
@@ -15,6 +15,7 @@ while (true)
             if (i == 0 || j == 0) LD[i, j] = i + j;
             else if (i > j) LD[i, j] = LD[i - 1, j] + 1;
             else if (j < i) LD[i, j] = LD[i, j - 1] + 1;
+            else if (i > 2 && j > 2 && s1[i - 1] == s2[j - 2] && s1[i - 2] == s2[j - 1]) LD[i, j] = LD[i - 2, j - 2] + 1;
             else if (s1[i - 1] != s2[j - 1]) LD[i, j] = LD[i - 1, j - 1] + 1;
             else LD[i, j] = LD[i - 1, j - 1];
         }
